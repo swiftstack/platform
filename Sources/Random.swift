@@ -1,13 +1,8 @@
 #if os(Linux)
-    var cache = [UInt32]()
-    let capacity = 128
-
     public func arc4random() -> UInt32 {
-        if let next = cache.popLast() {
-            return next
-        }
-        updateCache()
-        return arc4random()
+        var result: UInt32 = 0
+        arc4random_buf(&result, MemoryLayout<UInt32>.size)
+        return result
     }
 
     public func arc4random_uniform(_ upperBound: UInt32) -> UInt32 {
@@ -20,11 +15,5 @@
         let result = read(descriptor, buffer, count)
         close(descriptor)
         precondition(result == count, "read less than expected")
-    }
-
-    fileprivate func updateCache() {
-        cache = [UInt32](repeating: 0, count: capacity)
-        arc4random_buf(&cache, MemoryLayout<UInt32>.size * capacity)
-        precondition(cache.count > 0, "can't init random")
     }
 #endif
