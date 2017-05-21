@@ -1,3 +1,4 @@
+import Test
 @testable import Platform
 
 class RandomTests: XCTestCase {
