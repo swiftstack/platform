@@ -1,4 +1,10 @@
 #if os(Linux)
+    var urandom: Int32 = {
+        let descriptor = open("/dev/urandom", O_RDONLY)
+        precondition(descriptor >= 1, "/dev/urandom is unavailable")
+        return descriptor
+    }()
+
     public func arc4random() -> UInt32 {
         var result: UInt32 = 0
         arc4random_buf(&result, MemoryLayout<UInt32>.size)
@@ -10,10 +16,7 @@
     }
 
     public func arc4random_buf(_ buffer: UnsafeMutableRawPointer, _ count: Int) {
-        let descriptor = open("/dev/urandom", O_RDONLY)
-        precondition(descriptor >= 1, "/dev/urandom is unavailable")
-        let result = read(descriptor, buffer, count)
-        close(descriptor)
+        let result = read(urandom, buffer, count)
         precondition(result == count, "read less than expected")
     }
 #endif
