@@ -2,7 +2,7 @@ public struct Descriptor: RawRepresentable {
     public let rawValue: Int32
 
     public init?(rawValue: Int32) {
-        guard rawValue > 0 else {
+        guard rawValue >= 0 else {
             return nil
         }
         self.rawValue = rawValue
