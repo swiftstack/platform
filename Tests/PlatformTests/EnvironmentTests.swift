@@ -3,8 +3,14 @@ import Test
 
 class EnvironmentTests: TestCase {
     func testEnvironment() {
-        assertNil(Environment["EnvironmentTests"])
-        Environment["EnvironmentTests"] = "test"
-        assertEqual(Environment["EnvironmentTests"], "test")
+        assertNil(Environment["testEnvironment"])
+        Environment["testEnvironment"] = "test"
+        assertEqual(Environment["testEnvironment"], "test")
+    }
+
+    func testDynamicMemberLookup() {
+        assertNil(Environment.testDynamicMemberLookup)
+        Environment.testDynamicMemberLookup = "test"
+        assertEqual(Environment.testDynamicMemberLookup, "test")
     }
 }
