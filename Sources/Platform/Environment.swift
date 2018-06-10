@@ -1,4 +1,4 @@
-public let Environment = Environ()
+public var Environment = Environ()
 
 @dynamicMemberLookup
 public struct Environ {
@@ -41,4 +41,25 @@ public struct Environ {
             throw SystemError()
         }
     }
+
+    public lazy var values: [String : String] = {
+        var values: [String: String] = [:]
+
+        var pointer = environ
+        while let next = pointer.pointee {
+            defer { pointer += 1 }
+
+            guard let string = String(validatingUTF8: next) else {
+                continue
+            }
+
+            let parts = string.split(separator: "=")
+            guard parts.count == 2 else {
+                continue
+            }
+            values[String(parts[0])] = String(parts[1])
+        }
+
+        return values
+    }()
 }
