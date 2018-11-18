@@ -2,6 +2,11 @@ import Test
 import Platform
 
 class MemoryTests: TestCase {
+    func testPage() {
+        assertEqual(Memory.Page.size, 4096)
+        assertTrue(Memory.Page.count > 1024)
+    }
+
     func testSize() {
         assertTrue(Memory.size > 1024)
     }
