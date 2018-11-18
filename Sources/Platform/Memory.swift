@@ -1,3 +1,8 @@
+#if os(Linux)
+let _SC_PHYS_PAGES = Int32(Glibc._SC_PHYS_PAGES)
+let _SC_PAGESIZE = Int32(Glibc._SC_PAGESIZE)
+#endif
+
 public enum Memory {
     public static var size: Size = {
         return Page.size * Page.count
