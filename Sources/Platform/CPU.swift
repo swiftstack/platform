@@ -1,3 +1,8 @@
+#if os(Linux)
+let _SC_NPROCESSORS_ONLN = Int32(Glibc._SC_NPROCESSORS_ONLN)
+let _SC_NPROCESSORS_CONF = Int32(Glibc._SC_NPROCESSORS_CONF)
+#endif
+
 public enum CPU {
     /// CPUs count available for the process
     public static var count: Int {
