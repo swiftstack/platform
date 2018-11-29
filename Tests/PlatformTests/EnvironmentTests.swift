@@ -16,6 +16,9 @@ class EnvironmentTests: TestCase {
 
     func testValues() {
         assertTrue(Environment.values.count > 0)
+        assertNil(Environment.values[#function])
+        Environment[#function] = "value"
+        assertEqual(Environment.values[#function], "value")
     }
 
     func testEnvironmentValuesWithEqualSignInTheValue() {
