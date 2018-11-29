@@ -53,11 +53,14 @@ public struct Environ {
                 continue
             }
 
-            let parts = string.split(separator: "=")
-            guard parts.count == 2 else {
+            guard var index = string.firstIndex(of: "=") else {
                 continue
             }
-            values[String(parts[0])] = String(parts[1])
+
+            let key = String(string[..<index])
+            index = string.index(after: index)
+            let value = String(string[index...])
+            values[key] = value
         }
 
         return values
