@@ -49,12 +49,9 @@ public struct Environ {
         while let next = pointer.pointee {
             defer { pointer += 1 }
 
-            guard let string = String(validatingUTF8: next) else {
-                continue
-            }
-
-            guard var index = string.firstIndex(of: "=") else {
-                continue
+            guard let string = String(validatingUTF8: next),
+                var index = string.firstIndex(of: "=") else {
+                    continue
             }
 
             let key = String(string[..<index])
