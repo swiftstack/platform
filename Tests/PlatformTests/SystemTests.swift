@@ -3,20 +3,20 @@ import Platform
 
 class SystemTests: TestCase {
     func testInt() {
-        assertThrowsError(try system {
-            return -1
-        })
+        expect(throws: SystemError()) {
+            try system { -1 }
+        }
     }
 
     func testOpaquePointer() {
-        assertThrowsError(try system {
-            return nil as OpaquePointer?
-        })
+        expect(throws: SystemError()) {
+            try system { nil as OpaquePointer? }
+        }
     }
 
     func testGenericPointer() {
-        assertThrowsError(try system {
-            return nil as UnsafeMutablePointer<Int>?
-        })
+        expect(throws: SystemError()) {
+            try system { nil as UnsafeMutablePointer<Int>? }
+        }
     }
 }

@@ -3,27 +3,27 @@ import Platform
 
 class EnvironmentTests: TestCase {
     func testEnvironment() {
-        assertNil(Environment["testEnvironment"])
+        expect(Environment["testEnvironment"] == nil)
         Environment["testEnvironment"] = "test"
-        assertEqual(Environment["testEnvironment"], "test")
+        expect(Environment["testEnvironment"] == "test")
     }
 
     func testDynamicMemberLookup() {
-        assertNil(Environment.testDynamicMemberLookup)
+        expect(Environment.testDynamicMemberLookup == nil)
         Environment.testDynamicMemberLookup = "test"
-        assertEqual(Environment.testDynamicMemberLookup, "test")
+        expect(Environment.testDynamicMemberLookup == "test")
     }
 
     func testValues() {
-        assertTrue(Environment.values.count > 0)
-        assertNil(Environment.values[#function])
+        expect(Environment.values.count > 0)
+        expect(Environment.values[#function] == nil)
         Environment[#function] = "value"
-        assertEqual(Environment.values[#function], "value")
+        expect(Environment.values[#function] == "value")
     }
 
     func testEnvironmentValuesWithEqualSignInTheValue() {
-        assertNil(Environment[#function])
+        expect(Environment[#function] == nil)
         Environment[#function] = "test=test"
-        assertEqual(Environment.values[#function], "test=test")
+        expect(Environment.values[#function] == "test=test")
     }
 }
