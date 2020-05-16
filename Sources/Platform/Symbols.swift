@@ -2,7 +2,7 @@ public struct DynamicLoadError: Error, CustomStringConvertible {
     public var description = String(cString: dlerror())
 }
 
-public func resolveFunction<T>(name: String) throws -> T {
+public func resolve<T>(function name: String) throws -> T {
     guard let handle = dlopen(nil, RTLD_LAZY) else {
         throw DynamicLoadError()
     }
