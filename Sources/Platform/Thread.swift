@@ -1,8 +1,8 @@
 #if os(Linux)
-private func pthread_main_np() -> Int32 { CFIsMainThread() ? 1 : 0 }
+private func pthread_main_np() -> Int32 { syscall(186) == getpid() ? 1 : 0 }
 
-private let CFIsMainThread: @convention(c) () -> Bool = {
-    try! resolve(function: "_CFIsMainThread")
+private let syscall: @convention(c) (Int) -> Int = {
+    try! resolve(function: "syscall")
 }()
 #endif
 
