@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+swift build
+
+export DYLD_LIBRARY_PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/lib/swift/macosx
+
+.build/debug/Tests/Platform/CPU
+.build/debug/Tests/Platform/Environment
+.build/debug/Tests/Platform/Memory
+.build/debug/Tests/Platform/System
+.build/debug/Tests/Platform/Thread
+.build/debug/Tests/Platform/ThreadSpecific

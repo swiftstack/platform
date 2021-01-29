@@ -12,12 +12,35 @@ let package = Package(
         .package(name: "Test")
     ],
     targets: [
-        .target(name: "Platform"),
-        .testTarget(
-            name: "PlatformTests",
-            dependencies: ["Platform", "Test"])
+        .target(name: "Platform")
     ]
 )
+
+// MARK: - tests
+
+testTarget("Platform") { test in
+    test("CPU")
+    test("Environment")
+    test("Memory")
+    test("System")
+    test("Thread")
+    test("ThreadSpecific")
+}
+
+func testTarget(_ target: String, task: ((String) -> Void) -> Void) {
+    task { test in addTest(target: target, name: test) }
+}
+
+func addTest(target: String, name: String) {
+    package.targets.append(
+        .executableTarget(
+            name: "Tests/\(target)/\(name)",
+            dependencies: ["Platform", "Test"],
+            path: "Tests/\(target)/\(name)",
+            swiftSettings: [
+                .unsafeFlags(["-Xfrontend", "-enable-experimental-concurrency"])
+            ]))
+}
 
 // MARK: - custom package source
 
