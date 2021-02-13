@@ -2,7 +2,11 @@ import Test
 import Platform
 
 test.case("Page") {
+    #if arch(arm64)
+    expect(Memory.Page.size == 16384)
+    #else
     expect(Memory.Page.size == 4096)
+    #endif
     expect(Memory.Page.count > 1024)
 }
 
