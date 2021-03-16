@@ -1,4 +1,4 @@
-public struct Descriptor: RawRepresentable {
+public struct Descriptor: RawRepresentable, ConcurrentValue {
     public let rawValue: Int32
 
     public init?(rawValue: Int32) {
@@ -10,11 +10,11 @@ public struct Descriptor: RawRepresentable {
 
     public var flags: Int32 {
         get { return fcntl(rawValue, F_GETFD, 0) }
-        set { _ = fcntl(rawValue, F_SETFD, newValue) }
+        nonmutating set { _ = fcntl(rawValue, F_SETFD, newValue) }
     }
 
     public var status: Int32 {
         get { return fcntl(rawValue, F_GETFL, 0) }
-        set { _ = fcntl(rawValue, F_SETFL, newValue) }
+        nonmutating set { _ = fcntl(rawValue, F_SETFL, newValue) }
     }
 }
