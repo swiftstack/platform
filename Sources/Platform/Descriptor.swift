@@ -1,4 +1,4 @@
-public struct Descriptor: RawRepresentable, ConcurrentValue {
+public struct Descriptor: RawRepresentable, Sendable {
     public let rawValue: Int32
 
     public init?(rawValue: Int32) {
