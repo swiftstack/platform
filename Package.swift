@@ -38,6 +38,7 @@ func addTest(target: String, name: String) {
             dependencies: ["Platform", "Test"],
             path: "Tests/\(target)/\(name)",
             swiftSettings: [
+                .unsafeFlags(["-Xfrontend", "-disable-availability-checking"]),
                 .unsafeFlags(["-Xfrontend", "-enable-experimental-concurrency"])
             ]))
 }
