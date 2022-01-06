@@ -6,13 +6,13 @@ let package = Package(
     products: [
         .library(
             name: "Platform",
-            targets: ["Platform"])
+            targets: ["Platform"]),
     ],
     dependencies: [
-        .package(name: "Test")
+        .package(name: "Test"),
     ],
     targets: [
-        .target(name: "Platform")
+        .target(name: "Platform"),
     ]
 )
 
