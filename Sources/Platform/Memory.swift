@@ -138,8 +138,8 @@ extension String {
             self = "\(size.bytesCount) \(representation.symbol)"
             return
         }
-        let devider = Double(representation.devider.bytesCount)
-        let value = Double(size.bytesCount) / devider
+        let divider = Double(representation.divider.bytesCount)
+        let value = Double(size.bytesCount) / divider
         self = "\(format(value)) \(representation.symbol)"
     }
 }
@@ -151,10 +151,10 @@ extension Memory.Size {
         case decimal(Decimal)
         case binary(Binary)
 
-        var devider: Memory.Size {
+        var divider: Memory.Size {
             switch self {
-            case .binary(let binary): return binary.devider
-            case .decimal(let decimal): return decimal.devider
+            case .binary(let binary): return binary.divider
+            case .decimal(let decimal): return decimal.divider
             default: fatalError("unreachable")
             }
         }
@@ -175,8 +175,7 @@ extension Memory.Size {
             case terabytes = "TB"
             case petabytes = "PB"
 
-
-            var devider: Memory.Size {
+            var divider: Memory.Size {
                 switch self {
                 case .kilobytes: return .kilobyte
                 case .megabytes: return .megabyte
@@ -194,7 +193,7 @@ extension Memory.Size {
             case tebibytes = "TiB"
             case pebibytes = "PiB"
 
-            var devider: Memory.Size {
+            var divider: Memory.Size {
                 switch self {
                 case .kibibytes: return .kibibyte
                 case .mebibytes: return .mebibyte
