@@ -11,4 +11,4 @@ test.case("CPUTotalCount") {
     expect(CPU.totalCount < 256)
 }
 
-test.run()
+await test.run()

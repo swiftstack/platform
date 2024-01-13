@@ -5,4 +5,4 @@ test.case("IsMainThread") {
     expect(Thread.isMain == true)
 }
 
-test.run()
+await test.run()

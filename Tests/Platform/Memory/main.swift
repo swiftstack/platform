@@ -36,4 +36,4 @@ test.case("SizeRepresentationRounding") {
     expect(String(Memory.Size(bytesCount: 1030)) == "1.01 KiB")
 }
 
-test.run()
+await test.run()

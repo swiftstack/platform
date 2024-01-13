@@ -19,4 +19,4 @@ test.case("GenericPointer") {
     }
 }
 
-test.run()
+await test.run()

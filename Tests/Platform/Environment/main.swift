@@ -26,4 +26,4 @@ test.case("Environment values with equal sign in the value") {
     expect(Environment.values["test"] == "test=test")
 }
 
-test.run()
+await test.run()

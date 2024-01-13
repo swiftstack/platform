@@ -26,4 +26,4 @@ test.case("SetThreadSpecific") {
     expect(object.name == "from set")
 }
 
-test.run()
+await test.run()
