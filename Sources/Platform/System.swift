@@ -10,8 +10,8 @@ public func system<T: SignedNumeric>(_ task: () -> T) throws -> T {
 
 @inline(__always)
 public func system<T>(
-    _ task: () -> UnsafeMutablePointer<T>?) throws -> UnsafeMutablePointer<T>
-{
+    _ task: () -> UnsafeMutablePointer<T>?
+) throws -> UnsafeMutablePointer<T> {
     guard let result = task() else {
         throw SystemError()
     }
@@ -20,8 +20,8 @@ public func system<T>(
 
 @inline(__always)
 public func system(
-    _ task: () -> OpaquePointer?) throws -> OpaquePointer
-{
+    _ task: () -> OpaquePointer?
+) throws -> OpaquePointer {
     guard let result = task() else {
         throw SystemError()
     }

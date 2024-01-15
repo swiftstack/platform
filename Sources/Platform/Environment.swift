@@ -7,7 +7,7 @@ public struct Environ {
         nonmutating set { self[key] = newValue }
     }
 
-    public subscript(key: String) -> String?  {
+    public subscript(key: String) -> String? {
         get {
             return getValue(forKey: key)
         }
@@ -29,8 +29,8 @@ public struct Environ {
     public func setValue(
         _ value: String,
         forKey key: String,
-        replace: Bool = true) throws
-    {
+        replace: Bool = true
+    ) throws {
         guard setenv(key, value, replace ? 1 : 0) != -1 else {
             throw SystemError()
         }
@@ -42,7 +42,7 @@ public struct Environ {
         }
     }
 
-    public var values: [String : String] {
+    public var values: [String: String] {
         var values: [String: String] = [:]
 
         var pointer = environ

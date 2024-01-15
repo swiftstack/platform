@@ -19,7 +19,7 @@ public enum Memory {
 
     public struct Page {
         public static var count: Int = {
-            return sysconf(_SC_PHYS_PAGES);
+            return sysconf(_SC_PHYS_PAGES)
         }()
 
         public static var size: Size = {
@@ -109,7 +109,10 @@ extension Memory.Size {
 // MARK: String
 
 extension String {
-    public init(_ size: Memory.Size, units: Memory.Size.Representation = .auto) {
+    public init(
+        _ size: Memory.Size,
+        units: Memory.Size.Representation = .auto
+    ) {
         func adjuct(_ size: Memory.Size) -> Memory.Size.Representation {
             switch size {
             case .zero ..< .kibibyte: return .bytes
@@ -241,7 +244,7 @@ extension Memory.Size: Numeric {
         lhs.bytesCount *= rhs.bytesCount
     }
 
-    public init?<T>(exactly source: T) where T : BinaryInteger {
+    public init?<T>(exactly source: T) where T: BinaryInteger {
         guard let value = Int(exactly: source) else {
             return nil
         }

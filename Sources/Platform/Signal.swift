@@ -51,8 +51,8 @@ extension Signal {
 
     public static func trap(
         _ signals: Signal...,
-        to handler: @escaping Handler)
-    {
+        to handler: @escaping Handler
+    ) {
         signals.forEach { trap($0, to: handler) }
     }
 
@@ -73,11 +73,11 @@ extension sigaction {
     init(_ action: @escaping Signal.Handler) {
         self.init()
         #if os(macOS)
-        typealias handlerType = Platform.__sigaction_u
-        self.__sigaction_u = unsafeBitCast(action, to: handlerType.self)
+        typealias HandlerType = Platform.__sigaction_u
+        self.__sigaction_u = unsafeBitCast(action, to: HandlerType.self)
         #elseif os(Linux)
-        typealias handlerType = __Unnamed_union___sigaction_handler
-        self.__sigaction_handler = unsafeBitCast(action, to: handlerType.self)
+        typealias HandlerType = __Unnamed_union___sigaction_handler
+        self.__sigaction_handler = unsafeBitCast(action, to: HandlerType.self)
         #endif
     }
 }
