@@ -9,7 +9,7 @@ final class TestObject {
     }
 }
 
-test.case("GetThreadSpecific") {
+test("GetThreadSpecific") {
     let threadSpecific = ThreadSpecific<TestObject>()
 
     let object = threadSpecific.get { .init(name: "from constructor") }
@@ -17,7 +17,7 @@ test.case("GetThreadSpecific") {
     expect(object.name == "from constructor")
 }
 
-test.case("SetThreadSpecific") {
+test("SetThreadSpecific") {
     let threadSpecific = ThreadSpecific<TestObject>()
 
     threadSpecific.set(.init(name: "from set"))
@@ -26,4 +26,4 @@ test.case("SetThreadSpecific") {
     expect(object.name == "from set")
 }
 
-await test.run()
+await run()

@@ -1,14 +1,14 @@
 import Test
 import Platform
 
-test.case("CPUCount") {
+test("CPUCount") {
     expect(CPU.count > 0)
     expect(CPU.count < 256)
 }
 
-test.case("CPUTotalCount") {
+test("CPUTotalCount") {
     expect(CPU.totalCount > 0)
     expect(CPU.totalCount < 256)
 }
 
-await test.run()
+await run()

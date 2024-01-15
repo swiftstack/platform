@@ -1,22 +1,22 @@
 import Test
 import Platform
 
-test.case("Int") {
+test("Int") {
     expect(throws: SystemError()) {
         try system { -1 }
     }
 }
 
-test.case("OpaquePointer") {
+test("OpaquePointer") {
     expect(throws: SystemError()) {
         try system { nil as OpaquePointer? }
     }
 }
 
-test.case("GenericPointer") {
+test("GenericPointer") {
     expect(throws: SystemError()) {
         try system { nil as UnsafeMutablePointer<Int>? }
     }
 }
 
-await test.run()
+await run()

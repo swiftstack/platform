@@ -1,7 +1,7 @@
 import Test
 import Platform
 
-test.case("Page") {
+test("Page") {
     #if arch(arm64)
     expect(Memory.Page.size == 16384)
     #else
@@ -10,11 +10,11 @@ test.case("Page") {
     expect(Memory.Page.count > 1024)
 }
 
-test.case("Size") {
+test("Size") {
     expect(Memory.size > 1024)
 }
 
-test.case("SizeRepresentation") {
+test("SizeRepresentation") {
     expect(String(.byte) == "1 B")
 
     expect(String(.kibibyte) == "1 KiB")
@@ -30,10 +30,10 @@ test.case("SizeRepresentation") {
     expect(String(.petabyte, units: .decimal(.petabytes)) == "1 PB")
 }
 
-test.case("SizeRepresentationRounding") {
+test("SizeRepresentationRounding") {
     expect(String(Memory.Size(bytesCount: 1023)) == "1023 B")
     expect(String(Memory.Size(bytesCount: 1029)) == "1 KiB")
     expect(String(Memory.Size(bytesCount: 1030)) == "1.01 KiB")
 }
 
-await test.run()
+await run()

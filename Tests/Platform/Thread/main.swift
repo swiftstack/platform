@@ -1,8 +1,8 @@
 import Test
 import Platform
 
-test.case("IsMainThread") {
+test("IsMainThread") {
     expect(Thread.isMain == true)
 }
 
-await test.run()
+await run()
