@@ -14,11 +14,11 @@ public class ThreadSpecific<T: AnyObject> {
     }
 
     @inlinable
-    public func get(_ constructor: () -> T) -> T {
+    public func get(defaultValue: @autoclosure () -> T) -> T {
         if let specific = pthread_getspecific(key) {
             return Unmanaged<T>.fromOpaque(specific).takeUnretainedValue()
         } else {
-            let value = constructor()
+            let value = defaultValue()
             set(value)
             return value
         }
