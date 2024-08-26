@@ -1,7 +1,7 @@
-public var Environment = Environ()
+public let Environment = Environ()
 
 @dynamicMemberLookup
-public struct Environ {
+public struct Environ: Sendable {
     public subscript(dynamicMember key: String) -> String? {
         get { return self[key] }
         nonmutating set { self[key] = newValue }
@@ -49,7 +49,7 @@ public struct Environ {
         while let next = pointer.pointee {
             defer { pointer += 1 }
 
-            guard let string = String(validatingUTF8: next),
+            guard let string = String(validatingCString: next),
                 var index = string.firstIndex(of: "=") else {
                     continue
             }

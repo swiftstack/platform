@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 import PackageDescription
 
 let package = Package(
@@ -12,33 +12,16 @@ let package = Package(
             name: "Platform",
             targets: ["Platform"]),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/apple/swift-testing.git",
-            from: "0.12.0")
-    ],
     targets: [
         .target(
-            name: "Platform",
-            swiftSettings: swift6),
+            name: "Platform"),
         .testTarget(
             name: "Tests",
             dependencies: [
                 .target(name: "Platform"),
-                .product(name: "Testing", package: "swift-testing"),
-            ],
-            swiftSettings: swift6)
+            ])
     ]
 )
-
-let swift6: [SwiftSetting] = [
-    .enableUpcomingFeature("ConciseMagicFile"),
-    .enableUpcomingFeature("ForwardTrailingClosures"),
-    .enableUpcomingFeature("ExistentialAny"),
-    .enableUpcomingFeature("StrictConcurrency"),
-    .enableUpcomingFeature("ImplicitOpenExistentials"),
-    .enableUpcomingFeature("BareSlashRegexLiterals"),
-]
 
 // MARK: - custom package source
 

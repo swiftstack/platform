@@ -4,11 +4,11 @@ let _SC_PAGESIZE = Int32(Glibc._SC_PAGESIZE)
 #endif
 
 public enum Memory {
-    public static var size: Size = {
+    public static let size: Size = {
         return Page.size * Page.count
     }()
 
-    public struct Size {
+    public struct Size: Sendable {
         var bytesCount: Int
 
         public init(bytesCount: Int) {
@@ -18,11 +18,11 @@ public enum Memory {
     }
 
     public struct Page {
-        public static var count: Int = {
+        public static let count: Int = {
             return sysconf(_SC_PHYS_PAGES)
         }()
 
-        public static var size: Size = {
+        public static let size: Size = {
             return .init(bytesCount: sysconf(_SC_PAGESIZE))
         }()
     }
