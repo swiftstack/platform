@@ -14,7 +14,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Platform"),
+            name: "Platform",
+            swiftSettings: [
+                .treatWarning("EmbeddedRestrictions", as: .error)
+            ]),
         .testTarget(
             name: "Tests",
             dependencies: [
